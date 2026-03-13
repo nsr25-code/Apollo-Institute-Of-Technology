@@ -33,6 +33,14 @@ const events = [
   }
 ];
 
+const academicCalendar = [
+  { event: "Commencement of Classes", date: "August 01, 2024" },
+  { event: "Mid-Semester Examination", date: "October 15-22, 2024" },
+  { event: "End-Semester Examination", date: "December 05-20, 2024" },
+  { event: "Winter Vacation", date: "Dec 21 - Jan 05, 2025" },
+  { event: "Even Semester Starts", date: "January 06, 2025" }
+];
+
 const NewsEvents: React.FC = () => {
   return (
     <section className="py-12 md:py-24 bg-slate-950 relative overflow-hidden">
@@ -114,15 +122,25 @@ const NewsEvents: React.FC = () => {
               ))}
             </div>
             
-            <div className="p-8 rounded-[2rem] bg-gradient-to-br from-blue-600 to-indigo-700 relative overflow-hidden group cursor-pointer">
+            <div className="p-8 rounded-[2rem] bg-slate-900/80 border border-slate-800 relative overflow-hidden group">
               <div className="relative z-10">
-                <h4 className="text-xl font-playfair font-bold text-white mb-2">Academic Calendar</h4>
-                <p className="text-blue-100 text-sm font-space mb-4">Download the full schedule for the 2024-25 session.</p>
-                <div className="inline-flex items-center gap-2 text-white font-space text-sm font-bold">
-                  Download PDF <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <h4 className="text-xl font-playfair font-bold text-white mb-6 flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-blue-500" />
+                  Academic Calendar
+                </h4>
+                <div className="space-y-4 mb-8">
+                  {academicCalendar.map((item, idx) => (
+                    <div key={idx} className="flex justify-between items-start gap-4 pb-3 border-b border-slate-800/50 last:border-0">
+                      <span className="text-slate-300 text-sm font-space leading-tight">{item.event}</span>
+                      <span className="text-blue-400 text-[10px] font-space font-bold whitespace-nowrap uppercase tracking-wider">{item.date}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-space text-sm font-bold cursor-pointer group/dl">
+                  Download Full PDF <ArrowRight className="w-4 h-4 group-hover/dl:translate-x-1 transition-transform" />
                 </div>
               </div>
-              <div className="absolute -right-4 -bottom-4 opacity-10 transform rotate-12 group-hover:rotate-0 transition-transform duration-700">
+              <div className="absolute -right-4 -bottom-4 opacity-5 transform rotate-12 group-hover:rotate-0 transition-transform duration-700">
                 <Calendar className="w-32 h-32" />
               </div>
             </div>

@@ -127,6 +127,7 @@ const App: React.FC = () => {
             <div>
               <h4 className="font-bold mb-6 font-space uppercase tracking-widest text-sm text-slate-300">Quick Links</h4>
               <ul className="space-y-4 text-slate-500 text-sm font-space">
+                <li><a href="#news-events" className="hover:text-blue-400 transition-colors">Academic Calendar</a></li>
                 <li><a href="https://apolloit.ac.in/mandatory-disclosure/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">Mandatory Disclosure</a></li>
                 <li><a href="https://apolloit.ac.in/fee-structure/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">Fee Structure</a></li>
                 <li><a href="https://apolloit.ac.in/anti-ragging-act-2010/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">Anti Ragging ACT, 2010</a></li>

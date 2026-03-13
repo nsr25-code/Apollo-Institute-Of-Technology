@@ -41,19 +41,19 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({ programName, onClose 
 
   if (isSubmitted) {
     return (
-      <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
-        <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-xl" onClick={onClose} />
-        <div className="relative w-full max-w-md glass-morphism border border-emerald-500/30 rounded-[2.5rem] p-12 text-center animate-in zoom-in duration-500">
-          <div className="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-emerald-500/20">
-            <CheckCircle className="w-10 h-10 text-emerald-500" />
+      <div className="fixed inset-0 z-[100001] flex items-center justify-center p-0 md:p-4">
+        <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-xl hidden md:block" onClick={onClose} />
+        <div className="relative w-full h-full md:h-auto md:max-w-md glass-morphism border-0 md:border md:border-emerald-500/30 rounded-none md:rounded-[2.5rem] p-8 md:p-12 text-center animate-in zoom-in duration-500 flex flex-col justify-center">
+          <div className="w-16 h-16 md:w-20 md:h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-emerald-500/20">
+            <CheckCircle className="w-8 h-8 md:w-10 md:h-10 text-emerald-500" />
           </div>
-          <h2 className="text-3xl font-space font-black text-white mb-4 uppercase">Success!</h2>
-          <p className="text-slate-400 font-space mb-8">
+          <h2 className="text-2xl md:text-3xl font-space font-black text-white mb-4 uppercase">Success!</h2>
+          <p className="text-slate-400 font-space mb-8 text-sm md:text-base">
             Your application for <span className="text-emerald-400 font-bold">{formData.selectedCourse || programName}</span> has been received. Our admissions counselor will contact you within 24 hours.
           </p>
           <button 
             onClick={onClose}
-            className="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl font-space font-bold transition-all shadow-lg shadow-emerald-500/20"
+            className="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl md:rounded-2xl font-space font-bold transition-all shadow-lg shadow-emerald-500/20"
           >
             Close Portal
           </button>
@@ -63,12 +63,12 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({ programName, onClose 
   }
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[100001] flex items-center justify-center p-0 md:p-4">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md" onClick={onClose} />
+      <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md hidden md:block" onClick={onClose} />
       
       {/* Modal Container */}
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl animate-in zoom-in duration-300 flex flex-col max-h-[95vh]">
+      <div className="relative w-full max-w-2xl h-full md:h-auto md:max-h-[95vh] bg-slate-900 border-0 md:border md:border-slate-800 rounded-none md:rounded-[3rem] overflow-hidden shadow-2xl animate-in zoom-in duration-300 flex flex-col">
         
         {/* Progress Bar Decor */}
         <div className="absolute top-0 left-0 w-full h-1 bg-slate-800 z-30">
@@ -76,26 +76,26 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({ programName, onClose 
         </div>
 
         {/* Header - Fixed at top */}
-        <div className="p-6 md:p-8 border-b border-slate-800 flex justify-between items-center bg-slate-900/80 backdrop-blur-xl z-20">
-          <div className="space-y-1">
-            <div className="inline-block px-3 py-0.5 rounded-full bg-blue-500/10 text-blue-400 font-space text-[10px] font-bold tracking-widest uppercase border border-blue-500/20">
+        <div className="p-5 md:p-8 border-b border-slate-800 flex justify-between items-center bg-slate-900/80 backdrop-blur-xl z-20">
+          <div className="space-y-0.5 md:space-y-1">
+            <div className="inline-block px-2 md:px-3 py-0.5 rounded-full bg-blue-500/10 text-blue-400 font-space text-[8px] md:text-[10px] font-bold tracking-widest uppercase border border-blue-500/20">
               Admission Portal 2024-25
             </div>
-            <h2 className="text-2xl md:text-3xl font-playfair font-bold text-white uppercase">
+            <h2 className="text-xl md:text-3xl font-playfair font-bold text-white uppercase">
               Application Form
             </h2>
           </div>
           <button 
             onClick={onClose}
-            className="p-3 bg-slate-800 hover:bg-red-500/20 hover:text-red-400 rounded-full text-slate-400 transition-all border border-slate-700 hover:border-red-500/50 group"
+            className="p-2.5 md:p-3 bg-slate-800 hover:bg-red-500/20 hover:text-red-400 rounded-full text-slate-400 transition-all border border-slate-700 hover:border-red-500/50 group"
             title="Close Form"
           >
-            <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
+            <X className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-90 transition-transform duration-300" />
           </button>
         </div>
 
         {/* Form Body - Scrollable */}
-        <div className="flex-1 overflow-y-auto p-6 md:p-10 space-y-8 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+        <div className="flex-1 overflow-y-auto p-5 md:p-10 space-y-6 md:space-y-8 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
           <form id="admission-form" onSubmit={handleSubmit} className="space-y-8">
             
             {/* Section: Personal Information */}
@@ -338,17 +338,17 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({ programName, onClose 
         </div>
 
         {/* Footer - Fixed at bottom */}
-        <div className="p-6 md:p-8 border-t border-slate-800 bg-slate-900/80 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[10px] text-slate-600 font-space uppercase tracking-[0.3em] order-2 md:order-1">
+        <div className="p-5 md:p-8 border-t border-slate-800 bg-slate-900/80 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[8px] md:text-[10px] text-slate-600 font-space uppercase tracking-[0.3em] order-2 md:order-1 text-center md:text-left">
             Secure Admissions Portal • Accredited by NBA & NAAC
           </p>
           <button 
             form="admission-form"
             type="submit"
-            className="w-full md:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-space font-black uppercase tracking-[0.2em] transition-all shadow-xl shadow-blue-500/20 active:scale-[0.98] flex items-center justify-center gap-3 group/submit order-1 md:order-2"
+            className="w-full md:w-auto px-8 md:px-10 py-3.5 md:py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl md:rounded-2xl font-space font-black uppercase tracking-[0.2em] transition-all shadow-xl shadow-blue-500/20 active:scale-[0.98] flex items-center justify-center gap-3 group/submit order-1 md:order-2 text-sm md:text-base"
           >
             Submit Application
-            <Send className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            <Send className="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </button>
         </div>
       </div>

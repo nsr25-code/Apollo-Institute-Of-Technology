@@ -63,7 +63,7 @@ const AcademicPortfolio: React.FC<PortfolioProps> = ({ onSelect, onApply }) => {
                   </div>
 
                   {/* Dynamic Action Area */}
-                  <div className="px-5 pb-5 md:px-8 md:pb-8 mt-auto">
+                  <div className="px-5 pb-5 md:px-8 md:pb-8 mt-auto relative z-20">
                     <div className="pt-4 md:pt-6 border-t border-slate-800/50">
                       {hasBranches ? (
                         <button 
@@ -94,7 +94,7 @@ const AcademicPortfolio: React.FC<PortfolioProps> = ({ onSelect, onApply }) => {
                   </div>
 
                   {/* Animated Background Decor */}
-                  <div className={`absolute -bottom-10 -right-10 w-48 h-48 bg-${dept.accentColor}/5 rounded-full blur-3xl transition-all duration-700 group-hover:bg-${dept.accentColor}/10 group-hover:scale-150`}></div>
+                  <div className={`absolute -bottom-10 -right-10 w-48 h-48 bg-${dept.accentColor}/5 rounded-full blur-3xl transition-all duration-700 group-hover:bg-${dept.accentColor}/10 group-hover:scale-150 pointer-events-none`}></div>
                 </div>
               </div>
             );
