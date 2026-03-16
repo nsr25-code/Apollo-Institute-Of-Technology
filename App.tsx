@@ -11,6 +11,7 @@ import VideoGallery from './components/VideoGallery';
 import BranchSelector from './components/BranchSelector';
 import ApplicationForm from './components/ApplicationForm';
 import ContactModal from './components/ContactModal';
+import Chatbot from './components/Chatbot';
 import { Phone, Mail, Headphones, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { DepartmentWing, Branch } from './types';
 
@@ -213,6 +214,9 @@ const App: React.FC = () => {
           </div>
         </div>
       </a>
+
+      {/* AI Chatbot Button */}
+      <Chatbot />
     </div>
   );
 };
