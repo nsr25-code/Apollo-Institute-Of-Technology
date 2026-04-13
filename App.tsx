@@ -184,7 +184,7 @@ const App: React.FC = () => {
           <div className="mt-20 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-600 text-xs font-space">
             <div>© {new Date().getFullYear()} AIT & AIPS. All Rights Reserved.</div>
             <div className="uppercase tracking-widest opacity-50">
-              Designed by - <span className="text-blue-500 font-bold">MD Nisar Ahmad</span>
+              Designed by - <span className="text-red-600 font-bold">MD Nisar Ahmad</span>
             </div>
           </div>
         </div>

@@ -30,11 +30,7 @@ const Chatbot: React.FC = () => {
     setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
     setIsLoading(true);
 
-    try {
-      const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
-      const model = "gemini-3-flash-preview";
-      
-      const systemInstruction = `
+    const systemInstruction = `
         You are the official AI Assistant for Apollo Institute of Technology (AIT) and Apollo Institute of Professional Studies (AIPS) in Kanpur.
         Provide accurate, professional, and helpful information based on the following comprehensive data:
 
@@ -95,18 +91,40 @@ const Chatbot: React.FC = () => {
         - FALLBACK: If info is missing, suggest: "📞 Call: 7525003820" or "📍 Visit: Sarsaul, Kanpur".
       `;
 
+    try {
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        throw new Error("API_KEY_MISSING");
+      }
+
+      const genAI = new GoogleGenAI({ apiKey });
+      
       const response = await genAI.models.generateContent({
-        model: model,
-        contents: [
-          { role: 'user', parts: [{ text: `System Instruction: ${systemInstruction}\n\nUser Question: ${userMessage}` }] }
-        ],
+        model: "gemini-3-flash-preview",
+        contents: [{ role: 'user', parts: [{ text: userMessage }] }],
+        config: {
+          systemInstruction: systemInstruction,
+          temperature: 0.7,
+          topP: 0.95,
+          topK: 40,
+        },
       });
 
       const aiResponse = response.text || "I'm sorry, I couldn't process that request. Please try again or contact our helpdesk.";
       setMessages(prev => [...prev, { role: 'model', text: aiResponse }]);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Chatbot Error:", error);
-      setMessages(prev => [...prev, { role: 'model', text: "I'm having trouble connecting right now. Please try again later." }]);
+      let errorMessage = "I'm having trouble connecting right now. Please try again later.";
+      
+      const message = error instanceof Error ? error.message : String(error);
+
+      if (message === "API_KEY_MISSING") {
+        errorMessage = "⚠️ API Key is missing. If you are using Vercel, please add GEMINI_API_KEY to your Environment Variables.";
+      } else if (message.includes("API key not valid")) {
+        errorMessage = "⚠️ Invalid API Key. Please check your Gemini API configuration.";
+      }
+
+      setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
